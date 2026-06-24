@@ -1,4 +1,4 @@
-package br.ufrn.academix.framework.app.domain;
+package br.ufrn.academix.framework.app.service;
 
 import br.ufrn.academix.framework.app.domain.model.AcademixProfile;
 import br.ufrn.academix.framework.app.domain.repository.AcademixProfileRepository;
