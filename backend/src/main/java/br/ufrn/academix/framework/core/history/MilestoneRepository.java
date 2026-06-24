@@ -8,7 +8,9 @@ import java.util.UUID;
 
 @Repository
 public interface MilestoneRepository extends JpaRepository<Milestone, UUID> {
-    
-    // Busca todas as conquistas de uma conta base e já devolve ordenado do mais recente pro mais antigo
+    // Usado pela interface gráfica (do mais novo pro mais velho)
     List<Milestone> findByAccountIdOrderByReferenceYearDesc(UUID accountId);
+
+    // NOVA CONSULTA: Usado pelo Motor de IA (ordem cronológica: mais velho pro mais novo)
+    List<Milestone> findByAccountIdOrderByReferenceYearAsc(UUID accountId);
 }

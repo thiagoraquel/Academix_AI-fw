@@ -2,6 +2,7 @@ package br.ufrn.academix.framework.app.ai;
 
 import br.ufrn.academix.framework.core.ai.AiTaskTemplate;
 import br.ufrn.academix.framework.core.ai.LlmClient;
+import br.ufrn.academix.framework.core.history.MilestoneService;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -12,8 +13,9 @@ public class AconselhamentoMestradoTask extends AiTaskTemplate {
     // Aqui no futuro você injetará o repository ou provider para buscar o currículo no BD
     // private final AcademixIdentifierProvider identifierProvider;
 
-    public AconselhamentoMestradoTask(LlmClient llmClient) {
-        super(llmClient);
+    // Repassamos a injeção do Spring para o superconstrutor do framework
+    public AconselhamentoMestradoTask(LlmClient llmClient, MilestoneService milestoneService) {
+        super(llmClient, milestoneService);
     }
 
     @Override
@@ -29,6 +31,14 @@ public class AconselhamentoMestradoTask extends AiTaskTemplate {
         // return "Buscando dados XML do Lattes: " + lattesId; 
         
         return "Aluno de Ciência da Computação na UFRN. Foco em Engenharia de Software e IA.";
+    }
+
+    @Override
+    protected boolean shouldIncludeMilestones() {
+        // Sim! Queremos que a IA avalie os cursos e projetos já feitos
+        // para dar um conselho de mestrado muito mais preciso e personalizado.
+        // Sempre vem em ordem cronológica, e não dá para mudar isso.
+        return true; 
     }
 
     @Override

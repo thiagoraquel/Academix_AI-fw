@@ -39,4 +39,13 @@ public class MilestoneService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    public List<MilestoneResponseDTO> getChronologicalTimeline(UUID accountId) {
+        return repository.findByAccountIdOrderByReferenceYearAsc(accountId).stream()
+                .map(m -> new MilestoneResponseDTO(
+                        m.getId(), m.getReferenceYear(), 
+                        m.getCategory(), m.getTitle(), m.getDescription()
+                ))
+                .collect(Collectors.toList());
+    }
 }

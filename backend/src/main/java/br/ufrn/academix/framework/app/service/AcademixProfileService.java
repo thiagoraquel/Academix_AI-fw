@@ -21,13 +21,16 @@ public class AcademixProfileService {
     private final AcademixProfileRepository profileRepository;
     private final FrameworkAccountRepository accountRepository;
     private final DocumentProcessor documentProcessor;
+    private final EmailService emailService;
 
     public AcademixProfileService(AcademixProfileRepository profileRepository, 
                                   FrameworkAccountRepository accountRepository,
-                                  DocumentProcessor documentProcessor) {
+                                  DocumentProcessor documentProcessor,
+                                  EmailService emailService) {
         this.profileRepository = profileRepository;
         this.accountRepository = accountRepository;
         this.documentProcessor = documentProcessor;
+        this.emailService = emailService;
     }
 
     public AcademixProfile registrar(RegistroDTO dto) {
@@ -47,7 +50,9 @@ public class AcademixProfileService {
         profile.setLattesId(dto.lattesId());
         profile.setAcademicLevel(dto.academicLevel());
 
-        return profileRepository.save(profile);
+        AcademixProfile salvo = profileRepository.save(profile);
+        emailService.enviarEmailBoasVindas(salvo.getAccount().getEmail(), salvo.getAccount().getName());
+        return salvo;
     }
 
     public Optional<AcademixProfile> autenticar(String email, String senha) {
@@ -64,6 +69,7 @@ public class AcademixProfileService {
         
         profile.setCurriculoTexto(conteudo);
         profileRepository.save(profile);
+        emailService.enviarEmailAtualizacaoCurriculo(profile.getAccount().getEmail(), profile.getAccount().getName());
     }
 
     public String buscarCurriculo(UUID profileId) {
