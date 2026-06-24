@@ -1,4 +1,4 @@
-package br.ufrn.academix.framework.app.domain;
+package br.ufrn.academix.framework.app.domain.model;
 
 import br.ufrn.academix.framework.core.auth.FrameworkAccount;
 import jakarta.persistence.*;
@@ -17,12 +17,14 @@ public class AcademixProfile {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    // Associação forte com o Ponto Fixo do Framework
     @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "account_id", unique = true)
     private FrameworkAccount account;
 
     private String lattesId;
     private String openAlexAuthorId;
-    private String academicLevel; 
+    private String academicLevel;
+
+    @Column(name = "curriculo_texto", columnDefinition = "TEXT")
+    private String curriculoTexto;
 }
