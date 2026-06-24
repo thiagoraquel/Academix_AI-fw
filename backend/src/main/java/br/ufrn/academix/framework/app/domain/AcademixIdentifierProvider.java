@@ -1,5 +1,7 @@
 package br.ufrn.academix.framework.app.domain;
 
+import br.ufrn.academix.framework.app.domain.model.AcademixProfile;
+import br.ufrn.academix.framework.app.domain.repository.AcademixProfileRepository;
 import br.ufrn.academix.framework.core.auth.BusinessIdentifierProvider;
 import org.springframework.stereotype.Service;
 
