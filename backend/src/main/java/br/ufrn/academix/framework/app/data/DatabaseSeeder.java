@@ -1,4 +1,4 @@
-package br.ufrn.academix.framework.app.data;
+/*package br.ufrn.academix.framework.app.data;
 
 import br.ufrn.academix.framework.app.domain.AcademixUser;
 import br.ufrn.academix.framework.app.domain.AcademixUserRepository;
@@ -39,4 +39,4 @@ public class DatabaseSeeder implements CommandLineRunner {
             System.out.println("20 usuários mockados inseridos com sucesso no PostgreSQL!");
         }
     }
-}
+}*/
