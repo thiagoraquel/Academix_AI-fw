@@ -2,14 +2,14 @@
 import { useState, useEffect } from 'react';
 import Roadmap from './Roadmap'; 
 
-export default function PerfilPublico({ usuarioId, onVoltar }) {
+// Adicionado o accountId nas props
+export default function PerfilPublico({ usuarioId, accountId, onVoltar }) {
     const [nome, setNome] = useState('');
     const [curriculo, setCurriculo] = useState('');
 
     useEffect(() => {
         if (!usuarioId) return;
         
-        // Endpoints atualizados para a nova rota de profiles
         fetch(`http://localhost:8080/api/profiles/${usuarioId}/nome`)
             .then(res => res.text()).then(setNome);
 
@@ -39,7 +39,8 @@ export default function PerfilPublico({ usuarioId, onVoltar }) {
                     </div>
                 </section>
 
-                <Roadmap accountId={usuarioId} readOnly={true} />
+                {/* Agora repassamos o accountId correto da Conta Base para o componente do Framework! */}
+                <Roadmap accountId={accountId} readOnly={true} />
             </div>
         </div>
     );

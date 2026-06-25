@@ -12,6 +12,7 @@ import PerfilPublico from './components/PerfilPublico';
 export default function Home() {
   const [abaAtiva, setAbaAtiva] = useState('perfil');
   const [perfilSelecionadoId, setPerfilSelecionadoId] = useState(null);
+  const [contaSelecionadaId, setContaSelecionadaId] = useState(null); // <-- NOVO ESTADO
 
   const renderizarConteudo = () => {
     switch (abaAtiva) {
@@ -19,15 +20,18 @@ export default function Home() {
         return <CurriculoManager />;
         
       case 'explorar':
-        return <Explorar onVerPerfil={(idClicado) => {
-            setPerfilSelecionadoId(idClicado);
-            setAbaAtiva('perfil-publico'); // Muda a aba automaticamente
+        // Agora recebemos os dois IDs do clique
+        return <Explorar onVerPerfil={(idPerfil, idConta) => {
+            setPerfilSelecionadoId(idPerfil);
+            setContaSelecionadaId(idConta); // Guarda o ID do framework
+            setAbaAtiva('perfil-publico'); 
         }} />;
         
       case 'perfil-publico':
         return <PerfilPublico 
             usuarioId={perfilSelecionadoId} 
-            onVoltar={() => setAbaAtiva('explorar')} // Se clicar em voltar, retorna pro grid
+            accountId={contaSelecionadaId} // <-- Repassa o ID para a página
+            onVoltar={() => setAbaAtiva('explorar')}
         />;
 
       case 'graficos':

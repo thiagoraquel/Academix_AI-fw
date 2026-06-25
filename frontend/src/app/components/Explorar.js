@@ -50,7 +50,8 @@ export default function Explorar({ onVerPerfil }) {
                             </div>
 
                             <button 
-                                onClick={() => onVerPerfil(u.id)} 
+                                // Modificado para enviar u.id e u.accountId
+                                onClick={() => onVerPerfil(u.id, u.accountId)} 
                                 className="block w-full text-center bg-black text-white font-bold py-2 rounded-lg hover:bg-gray-800 transition text-sm"
                             >
                                 Ver Trajetória

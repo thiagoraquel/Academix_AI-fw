@@ -99,6 +99,7 @@ public class AcademixProfileService {
 
                     return UsuarioPublicoDTO.builder()
                             .id(p.getId())
+                            .accountId(p.getAccount().getId()) // <-- NOVO: Extraindo o ID da conta!
                             .nome(p.getAccount().getName())
                             .descricaoCurta(resumo)
                             .build();
