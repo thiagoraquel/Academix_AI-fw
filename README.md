@@ -1,4 +1,6 @@
-"# Academix_AI-fw" 
+# Academix_AI-fw 
+
+Aplicação da fase 1 da matéria de engenharia de software utilizando o framework
 
 cd frontend
 npm run dev
