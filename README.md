@@ -9,7 +9,7 @@ cd backend
 .\mvnw spring-boot:run
 
 usuario1:
-nome: Thiago Raquel
+nome: Thiago de Raquel
 email: thiaguinhomedeiros05@gmail.com
 senha: 123456
 id do lattes: 1234567890123456
